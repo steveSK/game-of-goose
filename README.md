@@ -1,5 +1,5 @@
 # The Goose Game
-Goose game is a game where two or more players move pieces around a track by rolling a die. The aim of the game is to reach square number sixty-three before any of the other players and avoid obstacles. ([wikipedia](https://en.wikipedia.org/wiki/Game_of_the_Goose))
+Goose game is a game where two or more players move pieces around a track by rolling a dice. The aim of the game is to reach square number sixty-three before any of the other players and avoid obstacles. ([wikipedia](https://en.wikipedia.org/wiki/Game_of_the_Goose))
 
 ## Requirement ##
 Scala 2.11 or higher, Gradle 4.10.x
