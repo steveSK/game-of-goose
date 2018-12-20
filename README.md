@@ -26,10 +26,9 @@ To start the game use command =>  `start game`
 
 To stop the game use command =>  `stop game`
  
-After the game is started, you can move players by rolling the dice or even specifying the dice values
+After the game is started, you can move players by rolling the dice or even specifying the dice values:
 
 To move player with rolling the dice use command => `move player 'player'`
-
 To move player without rolling the dice (specifying the dice values) use command => `move player 'player' 'dice1_value' 'dice2_value'`
    
 Player who first reach the posiiton 63, WINS :)
