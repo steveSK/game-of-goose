@@ -18,7 +18,7 @@ To run the game via CLI interface use `gradle run`
 
 ### in CLI interface ###
 
-First You need to Add players:
+To start to play, First you need to add players (minimum is 2):
 TO add player use command =>  `add player 'player'` 
 
 After you added all players you can start the game:
