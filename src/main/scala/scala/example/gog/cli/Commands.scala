@@ -13,7 +13,7 @@ object Commands {
   val not_enough_players = "There have to be atleast two players to start the game!"
   val game_already_started = "Game already started! You can't add new players!"
   val no_game_exist = "No Game is running!"
-  val illegal_dice_value = (roll0: Int,roll1: Int) => s"Dice Rolls values $roll0 $roll1 are not in right range, values have to be between 1-6!"
+  val illegal_dice_value = (roll0: Int, roll1: Int) => s"Dice Rolls values $roll0 $roll1 are not in right range, values have to be between 1-6!"
 
 
   val player_not_known = (player: String) => s"Player $player not found!"
@@ -74,18 +74,18 @@ object Commands {
       }
     }
 
-    private val isValidRange = (diceRoll: Int) => diceRoll > 0 && diceRoll<7
+    private val isValidRange = (diceRoll: Int) => diceRoll > 0 && diceRoll < 7
 
     def move(): (Option[Player], String) = {
       if (!game.players.contains(player)) {
         (None, player_not_known(player.name))
-      } else if(game._playerTurn != player) {
+      } else if (game._playerTurn != player) {
         (None, player_is_not_on_turn(player.name))
       } else {
         (diceRoll0, diceRoll1) match {
           case (Some(r0), Some(r1)) => {
-            if(!isValidRange(r0) || !isValidRange(r1)){
-              (None,illegal_dice_value(r0,r1))
+            if (!isValidRange(r0) || !isValidRange(r1)) {
+              (None, illegal_dice_value(r0, r1))
             } else {
               movePlayer(player, r0, r1)
             }
@@ -105,8 +105,8 @@ object Commands {
       val nextPlayer = playerMoved._1
       val moves = playerMoved._2
 
-      var movesMessages = player_rolls(player.name,roll0,roll1) + " " + moves.map(x => convertMoveToMessage(x)).mkString(", ")
-      if(!game._isFinished){
+      var movesMessages = player_rolls(player.name, roll0, roll1) + " " + moves.map(x => convertMoveToMessage(x)).mkString(", ")
+      if (!game._isFinished) {
         movesMessages = movesMessages + ". " + player_turn(nextPlayer.name)
       }
       (Some(nextPlayer), movesMessages)

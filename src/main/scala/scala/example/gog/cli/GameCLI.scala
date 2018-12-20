@@ -80,7 +80,7 @@ object GameCLI {
         game_not_started
       } else {
         val result = movePlayer.move()
-        if(game.get._isFinished){
+        if (game.get._isFinished) {
           game = None
         }
         result._2

@@ -27,11 +27,11 @@ class Game private(val players: List[Player]) {
     if (player != playerTurn) {
       throw new IllegalArgumentException(s"Player $player is not on the turn!")
     }
-    if(isFinished){
+    if (isFinished) {
       throw new IllegalStateException(s"The game already finished")
     }
     val moves = gamePlan.move(player, diceSum)
-    if(isWinningMove(moves)){
+    if (isWinningMove(moves)) {
       isFinished = true
     }
     val nextPlayer = getNextPlayer(player)
@@ -41,7 +41,7 @@ class Game private(val players: List[Player]) {
 
 
   def getNextPlayer(player: Player): Player = {
-    if (players.indexOf(player) == players.size-1) {
+    if (players.indexOf(player) == players.size - 1) {
       players(0)
     } else {
       gamePlan.players(players.indexOf(player) + 1)

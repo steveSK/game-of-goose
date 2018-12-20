@@ -21,11 +21,11 @@ class GamePlan(val players: List[Player]) {
     val starPos = moves(0).startPos
     val endPos = moves.last.endPos
     val playerToMoveBack = findPlayerOnPos(endPos)
-    if(playerToMoveBack.isDefined){
-      updatePlan(playerToMoveBack.get,starPos)
-      moves = moves:+ Moved(playerToMoveBack.get, endPos, starPos, MovedType.MOVEBACK)
+    if (playerToMoveBack.isDefined) {
+      updatePlan(playerToMoveBack.get, starPos)
+      moves = moves :+ Moved(playerToMoveBack.get, endPos, starPos, MovedType.MOVEBACK)
     }
-    updatePlan(player,endPos)
+    updatePlan(player, endPos)
 
     moves
   }
@@ -70,7 +70,7 @@ class GamePlan(val players: List[Player]) {
     }
   }
 
-  private def updatePlan(player: Player,pos: Int): Unit ={
+  private def updatePlan(player: Player, pos: Int): Unit = {
     gamePlan.put(player, pos)
   }
 
