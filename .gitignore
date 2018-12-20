@@ -1,0 +1,10 @@
+GameOfGoose.iml
+gradlew.bat
+gradlew
+/build/
+/gradle/
+
+.idea/
+.gradle/
+
+/out

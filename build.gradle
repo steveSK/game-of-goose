@@ -1,0 +1,35 @@
+
+plugins {
+    // Apply the scala plugin to add support for Scala
+    id 'scala'
+}
+
+dependencies {
+    // Use Scala 2.11 in our library project
+    compile 'org.scala-lang:scala-library:2.11.12'
+
+    // Use Scalatest for testing our library
+    testCompile 'junit:junit:4.12'
+    testCompile 'org.scalatest:scalatest_2.11:3.0.5'
+
+    // Need scala-xml at test runtime
+    testRuntime 'org.scala-lang.modules:scala-xml_2.11:1.1.0'
+}
+
+// In this section you declare where to find the dependencies of your project
+repositories {
+    jcenter()
+}
+
+apply plugin: 'application'
+mainClassName = "scala.example.gog.Main"
+
+/*task run(type: JavaExec, dependsOn: classes) {
+    main = 'scala.example.gog.Main'
+    classpath sourceSets.main.runtimeClasspath
+    classpath configurations.runtime
+} */
+
+run {
+    standardInput = System.in
+}
