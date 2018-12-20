@@ -9,11 +9,11 @@ Scala 2.11 or higher, Gradle 4.10.x
 Clone the repository to your local
 
 ## Project Build ##
-`gradle clean build`
+To build using gradle use `gradle clean build`
 
 
 
-## RUN ##
+## Run ##
 To run the game via CLI interface use `gradle run`
 
 ### in CLI interface ###
