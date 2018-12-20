@@ -8,7 +8,7 @@ Scala 2.11 or higher, Gradle 4.10.x
 ## Instalation ##
 Clone the repository to your local
 
-# Project Build #
+## Project Build ##
 `gradle clean build`
 
 
@@ -38,4 +38,6 @@ To exit the game use command => `exit`
 
 Have a fun!
 
+# Licence #
+This application is under license GNU GPL v3 [http://www.gnu.org/licenses/gpl.html]
 
