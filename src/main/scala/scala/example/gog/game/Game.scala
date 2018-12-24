@@ -2,7 +2,7 @@ package scala.example.gog.game
 
 
 import scala.example.gog.game.Game.MovedType.MovedType
-import scala.example.gog.game.Game.{Moved, MovedType, Player}
+import scala.example.gog.game.Game.{Move, MovedType, Player}
 
 
 class Game private(val players: List[Player]) {
@@ -21,9 +21,9 @@ class Game private(val players: List[Player]) {
 
   def _playerTurn = playerTurn
 
-  private val isWinningMove = (moves: List[Moved]) => moves.exists(_.moveType == MovedType.WINNING)
+  private val isWinningMove = (moves: List[Move]) => moves.exists(_.moveType == MovedType.WINNING)
 
-  def play(player: Player, diceSum: Int): (Player, List[Moved]) = {
+  def play(player: Player, diceSum: Int): (Player, List[Move]) = {
     if (player != playerTurn) {
       throw new IllegalArgumentException(s"Player $player is not on the turn!")
     }
@@ -34,11 +34,9 @@ class Game private(val players: List[Player]) {
     if (isWinningMove(moves)) {
       isFinished = true
     }
-    val nextPlayer = getNextPlayer(player)
-    playerTurn = nextPlayer
+    playerTurn = getNextPlayer(player)
     (playerTurn, moves)
   }
-
 
   private def getNextPlayer(player: Player): Player = {
     if (players.indexOf(player) == players.size - 1) {
@@ -52,7 +50,7 @@ class Game private(val players: List[Player]) {
 
 object Game {
 
-  case class Moved(player: Player, startPos: Int, endPos: Int, moveType: MovedType)
+  case class Move(player: Player, startPos: Int, endPos: Int, moveType: MovedType)
 
   case class Player(name: String)
 

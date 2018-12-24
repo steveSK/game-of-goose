@@ -1,6 +1,6 @@
 package scala.example.gog.cli
 
-import scala.example.gog.game.Game.{Moved, MovedType, Player}
+import scala.example.gog.game.Game.{Move, MovedType, Player}
 import scala.example.gog.game._
 
 
@@ -25,9 +25,9 @@ object Commands {
   val player_rolls = (player: String, diceRoll0: Int, diceRoll1: Int) => s"$player rolls $diceRoll0, $diceRoll1."
   val player_moves_to_pos = (player: String, start: String, pos: String) => s"$player moves from $start to $pos"
   val player_goose_jump = (player: String, pos: Int) => s"The Goose. $player moves again and goes to $pos"
-  val player_bridge_jump = (player: String) => s"$player jumps to ${GamePlanDefinition.bridge._2}"
-  val player_wins = (player: String, start: Int) => player_moves_to_pos(player, start.toString, GamePlanDefinition.winning.toString) + s" $player Wins!!! Game is Finished :)"
-  val player_bounced = (player: String, start: Int, bouncedPos: Int) => player_moves_to_pos(player, start.toString, GamePlanDefinition.winning.toString) +
+  val player_bridge_jump = (player: String) => s"$player jumps to ${GameRules.bridge._2}"
+  val player_wins = (player: String, start: Int) => player_moves_to_pos(player, start.toString, GameRules.winning.toString) + s" $player Wins!!! Game is Finished :)"
+  val player_bounced = (player: String, start: Int, bouncedPos: Int) => player_moves_to_pos(player, start.toString, GameRules.winning.toString) +
     s" $player bounces! $player returns to $bouncedPos"
   val player_move_back = (player: String, currentPos: Int, nextPos: String) => s"On $currentPos there is $player, who returns to $nextPos"
   val player_turn = (player: String) => s"$player is on Turn!"
@@ -56,7 +56,7 @@ object Commands {
 
     }
 
-    private val convertMoveToMessage = (move: Moved) => move.moveType match {
+    private val convertMoveToMessage = (move: Move) => move.moveType match {
       case MovedType.NORMAL => {
         player_moves_to_pos(move.player.name, convertPosToString(move.startPos), convertPosToString(move.endPos))
       }

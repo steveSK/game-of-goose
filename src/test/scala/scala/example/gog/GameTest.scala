@@ -4,7 +4,7 @@ import org.scalatest.{FlatSpec, Matchers}
 
 import scala.example.gog.game.Game
 import scala.example.gog.game.Game.MovedType.MovedType
-import scala.example.gog.game.Game.{Moved, MovedType, Player}
+import scala.example.gog.game.Game.{Move, MovedType, Player}
 
 class GameTest extends FlatSpec with Matchers {
 
@@ -12,7 +12,7 @@ class GameTest extends FlatSpec with Matchers {
 
   val createGame = () => Game.createGame(players)
 
-  val moveShouldBeEqual = (move: Moved, player: Player, startPos: Int, endPos: Int, moveType: MovedType) => {
+  val moveShouldBeEqual = (move: Move, player: Player, startPos: Int, endPos: Int, moveType: MovedType) => {
     move.startPos shouldEqual startPos
     move.player shouldEqual player
     move.endPos shouldEqual endPos
