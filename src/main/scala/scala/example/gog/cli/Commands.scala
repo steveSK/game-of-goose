@@ -32,9 +32,12 @@ object Commands {
   val player_move_back = (player: String, currentPos: Int, nextPos: String) => s"On $currentPos there is $player, who returns to $nextPos"
   val player_turn = (player: String) => s"$player is on Turn!"
 
+  trait Command[A] {
+    def execute() : (A, String)
+  }
 
-  case class StartGame(players: List[Player]) {
-    def start: (Option[Game], String) = {
+  case class StartGame(players: List[Player]) extends Command[Option[Game]]{
+    def execute: (Option[Game], String) = {
       if (players.size < 2) {
         (None, not_enough_players)
       } else {
@@ -44,7 +47,7 @@ object Commands {
     }
   }
 
-  case class MovePlayer(game: Game, player: Player, diceRoll0: Option[Int] = None, diceRoll1: Option[Int] = None) {
+  case class MovePlayer(game: Game, player: Player, diceRoll0: Option[Int] = None, diceRoll1: Option[Int] = None) extends Command[Option[Player]] {
 
     private val convertPosToString = (pos: Int) => pos match {
       case 0 => "Start"
@@ -76,7 +79,7 @@ object Commands {
 
     private val isValidRange = (diceRoll: Int) => diceRoll > 0 && diceRoll < 7
 
-    def move(): (Option[Player], String) = {
+    def execute(): (Option[Player], String) = {
       if (!game.players.contains(player)) {
         (None, player_not_known(player.name))
       } else if (game._playerTurn != player) {
@@ -114,8 +117,8 @@ object Commands {
 
   }
 
-  case class AddPlayer(player: Player, players: List[Player]) {
-    def addPlayer(): (List[Player], String) = {
+  case class AddPlayer(player: Player, players: List[Player]) extends Command[List[Player]] {
+    def execute(): (List[Player], String) = {
       if (players.exists(_ == player)) {
         (Nil, already_exist(player.name))
       } else {

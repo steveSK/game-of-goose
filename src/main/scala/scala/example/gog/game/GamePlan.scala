@@ -15,15 +15,14 @@ class GamePlan(val players: List[Player]) {
 
   def move(player: Player, diceSum: Int): List[Moved] = {
     validateMove(player, diceSum)
-    val lastPos = gamePlan.get(player).get
-    var moves = doMove(player, lastPos, diceSum)
+    val startPos = gamePlan.get(player).get
+    var moves = doMove(player, startPos, diceSum)
 
-    val starPos = moves(0).startPos
     val endPos = moves.last.endPos
     val playerToMoveBack = findPlayerOnPos(endPos)
     if (playerToMoveBack.isDefined) {
-      updatePlan(playerToMoveBack.get, starPos)
-      moves = moves :+ Moved(playerToMoveBack.get, endPos, starPos, MovedType.MOVEBACK)
+      updatePlan(playerToMoveBack.get, startPos)
+      moves = moves :+ Moved(playerToMoveBack.get, endPos, startPos, MovedType.MOVEBACK)
     }
     updatePlan(player, endPos)
 
@@ -33,11 +32,11 @@ class GamePlan(val players: List[Player]) {
   private def validateMove(player: Player, diceSum: Int): Unit = {
 
     if (!players.contains(player)) {
-      throw new IllegalStateException("Player: + " + player.name + " is not in the game")
+      throw new IllegalArgumentException("Player: + " + player.name + " is not in the game")
     }
 
     if (diceSum < 2 || diceSum > 12) {
-      throw new IllegalStateException("Dice sum is not in the range of [2,12]")
+      throw new IllegalArgumentException("Dice sum is not in the range of [2,12]")
     }
   }
 

@@ -48,9 +48,9 @@ object GameCLI {
 
     def doStart(): String = {
       if (!game.isDefined) {
-        val result = StartGame(players.toList).start
-        game = result._1
-        result._2
+        val (game, output) = StartGame(players).execute()
+        GameCLI.game = game
+        output
       } else {
         game_already_started
       }
@@ -67,9 +67,9 @@ object GameCLI {
 
     def doAddPlayer(player: Player): String = {
       if (!game.isDefined) {
-        val result = AddPlayer(player, players).addPlayer()
-        players = result._1
-        result._2
+        val (players, output) = AddPlayer(player, GameCLI.players).execute()
+        GameCLI.players = players
+        output
       } else {
         game_already_started
       }
@@ -79,11 +79,11 @@ object GameCLI {
       if (!game.isDefined) {
         game_not_started
       } else {
-        val result = movePlayer.move()
+        val (player, output) = movePlayer.execute()
         if (game.get._isFinished) {
           game = None
         }
-        result._2
+        output
       }
     }
   }

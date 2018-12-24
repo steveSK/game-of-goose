@@ -40,7 +40,7 @@ class Game private(val players: List[Player]) {
   }
 
 
-  def getNextPlayer(player: Player): Player = {
+  private def getNextPlayer(player: Player): Player = {
     if (players.indexOf(player) == players.size - 1) {
       players(0)
     } else {
