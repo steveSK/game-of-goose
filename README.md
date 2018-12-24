@@ -1,5 +1,5 @@
-# The Goose Game
-Goose game is a game where two or more players move pieces around a track by rolling a die. The aim of the game is to reach square number sixty-three before any of the other players and avoid obstacles. ([wikipedia](https://en.wikipedia.org/wiki/Game_of_the_Goose))
+# The Game of Goose
+Goose game is a game where two or more players move pieces around a track by rolling a dice. The aim of the game is to reach square number sixty-three before any of the other players and avoid obstacles. ([wikipedia](https://en.wikipedia.org/wiki/Game_of_the_Goose))
 
 ## Requirement ##
 Scala 2.11 or higher, Gradle 4.10.x
@@ -9,14 +9,14 @@ Scala 2.11 or higher, Gradle 4.10.x
 Clone the repository to your local
 
 ## Project Build ##
-`gradle clean build`
+To build using gradle use `gradle clean build`
 
 
 
-## RUN ##
+## Run ##
 To run the game via CLI interface use `gradle run`
 
-### in CLI interface ###
+### CLI interface ###
 
 To start to play, First you need to add players (minimum is 2):
 TO add player use command =>  `add player 'player'` 
