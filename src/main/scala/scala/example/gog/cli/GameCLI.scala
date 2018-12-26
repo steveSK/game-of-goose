@@ -15,7 +15,7 @@ object GameCLI {
   object CommandLineParser {
 
     implicit class Regex(sc: StringContext) {
-      def r = new util.matching.Regex(sc.parts.mkString, sc.parts.tail.map(_ => "x"): _*)
+      def r = new util.matching.Regex(sc.parts.mkString)
     }
 
     def readLine(line: String): String = {
